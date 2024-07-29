@@ -1,0 +1,25 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "RSS Feed";
+}
+
+<h1>RSS Feed</h1>
+
+@if (Model.RssItems != null && Model.RssItems.Any())
+{
+    <ul>
+        @foreach (var item in Model.RssItems)
+        {
+            <li>
+                <h2>@item.Title</h2>
+                <p>@item.PubDate.ToString("dd MMMM yyyy HH:mm")</p>
+                <p>@item.Description<p/>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No items found or unable to load RSS feed.</p>
+}

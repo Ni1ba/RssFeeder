@@ -29,8 +29,8 @@ namespace AspTest.Services
             {
                 Title = item.Title.Text,
                 PubDate = item.PublishDate.DateTime,
-                Description = StripHtml(HttpUtility.HtmlDecode(item.Summary?.Text ?? item.Content?.ToString() ?? string.Empty))
-
+                Description = StripHtml(HttpUtility.HtmlDecode(item.Summary?.Text ?? item.Content?.ToString() ?? string.Empty)),
+                Link = item.Links.FirstOrDefault()?.Uri.ToString() ?? string.Empty
             });
         }
         private string StripHtml(string input)

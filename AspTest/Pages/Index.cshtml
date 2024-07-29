@@ -5,14 +5,19 @@
 }
 
 <h1>RSS Feed</h1>
-
+<form method="post">
+    <div>
+        <input type="text" asp-for="RssUrl" placeholder="Enter RSS URL" />
+        <button type="submit">Load RSS</button>
+    </div>
+</form>
 @if (Model.RssItems != null && Model.RssItems.Any())
 {
     <ul>
         @foreach (var item in Model.RssItems)
         {
             <li>
-                <h2>@item.Title</h2>
+                <h2><a href="@item.Link" target="_blank">@item.Title</a></h2>
                 <p>@item.PubDate.ToString("dd MMMM yyyy HH:mm")</p>
                 <p>@item.Description<p/>
             </li>

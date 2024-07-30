@@ -1,4 +1,8 @@
 using AspTest.Services;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace AspTest
 {
@@ -16,7 +20,9 @@ namespace AspTest
                     webBuilder.ConfigureServices((context, services) =>
                     {
                         services.AddRazorPages();
-                        services.AddSingleton<RssService>(new RssService(context.Configuration["RssFeed:Url"]));
+                        var rssUrl = context.Configuration["RssFeed:Url"];
+                        services.AddSingleton<RssService>(new RssService(rssUrl));
+                        services.AddHostedService<RssRefreshService>();
                     })
                     .Configure((context, app) =>
                     {

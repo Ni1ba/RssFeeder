@@ -1,16 +1,18 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "RSS Feed";
+    ViewData["Title"] = "RSS фидер";
 }
 
-<h1>RSS Feed</h1>
+<h1>Rss фидер</h1>
+<h1>Настройки</h1>
 <form method="post">
     <div>
         <input type="text" asp-for="RssUrl" placeholder="Enter RSS URL" />
         <button type="submit">Load RSS</button>
     </div>
 </form>
+
 @if (Model.RssItems != null && Model.RssItems.Any())
 {
     <ul>
@@ -18,13 +20,13 @@
         {
             <li>
                 <h2><a href="@item.Link" target="_blank">@item.Title</a></h2>
-                <p>@item.PubDate.ToString("dd MMMM yyyy HH:mm")</p>
-                <p>@item.Description<p/>
+                <p><strong>Дата публикации:</strong> @item.PubDate.ToString("dd MMMM yyyy HH:mm")</p>
+                <p><strong>Описание:</strong> @Html.Raw(item.Description)</p>
             </li>
         }
     </ul>
 }
 else
 {
-    <p>No items found or unable to load RSS feed.</p>
+    <p>Элементы не найдены или невозможно загрузить RSS-канал.</p>
 }

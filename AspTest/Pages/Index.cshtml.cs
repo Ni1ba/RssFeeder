@@ -17,7 +17,7 @@ public class IndexModel : PageModel
     public IndexModel(IConfiguration configuration)
     {
         _configuration = configuration;
-        var rssUrl = _configuration["RssFeed:Url"];
+        var rssUrl = _configuration["RssFeed:DefaultUrl"];
         _rssService = new RssService(rssUrl);
     }
 

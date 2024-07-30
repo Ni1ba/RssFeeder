@@ -20,7 +20,7 @@ namespace AspTest
                     webBuilder.ConfigureServices((context, services) =>
                     {
                         services.AddRazorPages();
-                        var rssUrl = context.Configuration["RssFeed:Url"];
+                        var rssUrl = context.Configuration["RssFeed:DefaultUrl"];
                         services.AddSingleton<RssService>(new RssService(rssUrl));
                         services.AddHostedService<RssRefreshService>();
                     })
